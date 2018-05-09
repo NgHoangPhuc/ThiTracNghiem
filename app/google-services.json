@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "637351861344",
+    "firebase_url": "https://tracnghiem-data001.firebaseio.com",
+    "project_id": "tracnghiem-data001",
+    "storage_bucket": "tracnghiem-data001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637351861344:android:601ed6fba8ad901c",
+        "android_client_info": {
+          "package_name": "detai.android.ailatrieuphu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637351861344-8dc8smes4riknkogsaghsisbi75aeqed.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "detai.android.ailatrieuphu",
+            "certificate_hash": "a720a0ff40edfbae549efc65de6719760c14fda4"
+          }
+        },
+        {
+          "client_id": "637351861344-a3bl4t7318esoakvua6m9c1skrh4m3f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbte8kvF1-expgRY2Kl_JgrmS2hbELjLA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637351861344-a3bl4t7318esoakvua6m9c1skrh4m3f6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

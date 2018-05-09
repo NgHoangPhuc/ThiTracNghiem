@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thi trắc nghiệm</string>
+    <string name="app_rule">
+        Quy định của phần mềm:
+        \n\t Khi làm bài, các bạn không được chuyển qua sử dụng phần mềm khác hay để màn hình tắt, hệ thống sẽ tự động ghi nhận những câu bạn đã làm và nộp bài về máy chủ. Bạn sẽ không được phép làm lại đề đó.
+    </string>
+    <string name="strDelete">Xóa</string>
+</resources>
