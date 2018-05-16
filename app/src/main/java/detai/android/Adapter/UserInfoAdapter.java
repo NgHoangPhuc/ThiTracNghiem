@@ -9,19 +9,19 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import detai.android.Object.User;
+import detai.android.Object.UserInfo;
 import detai.android.thitracnghiem.R;
 
 /**
  * Created by admin on 9/24/2016.
  */
-public class UserInfoAdapter extends ArrayAdapter<User> {
+public class UserInfoAdapter extends ArrayAdapter<UserInfo> {
 
     Activity context;
     int resource;
-    List<User> objects;
+    List<UserInfo> objects;
 
-    public UserInfoAdapter(Activity context, int resource, List<User> objects) {
+    public UserInfoAdapter(Activity context, int resource, List<UserInfo> objects) {
         super(context, resource, objects);
 
         this.context = context;
@@ -38,7 +38,7 @@ public class UserInfoAdapter extends ArrayAdapter<User> {
         TextView tvName = (TextView) row.findViewById(R.id.tvName);
         TextView tvMoney = (TextView) row.findViewById(R.id.tvMoney);
 
-        User info = this.objects.get(position);
+        UserInfo info = this.objects.get(position);
 
         tvName.setText(info.getTenThiSinh());
         tvMoney.setText(info.getSoDiemDatDuoc());

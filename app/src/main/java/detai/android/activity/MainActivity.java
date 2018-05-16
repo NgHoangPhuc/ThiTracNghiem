@@ -17,11 +17,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 import detai.android.Object.message.Message;
 import detai.android.Object.session.SessionManager;
 import detai.android.activity.giaovien.MenuGiaoVienActivity;
-import detai.android.activity.hocsinh.MenuHocSinhActivity;
 import detai.android.thitracnghiem.R;
+import detai.android.activity.hocsinh.MenuHocSinhActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbGiaoVien;
     RadioButton rbHocSinh;
     ImageButton btnExit;
-    String url = "https://firebasestorage.googleapis.com/v0/b/tracnghiem-data001.appspot.com/o/1.png?alt=media&token=8d8f8498-8f72-44e3-a09b-213e5df8901b";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,16 @@ public class MainActivity extends AppCompatActivity {
         addControls();
         addEvents();
         khoiTaoGiaTriBanDau();
+        test();
     }
 
+
+    String url = "https://firebasestorage.googleapis.com/v0/b/tracnghiem-data001.appspot.com/o/1.png?alt=media&token=8d8f8498-8f72-44e3-a09b-213e5df8901b";
+
+    void test(){
+
+
+    }
     private void addControls() {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -54,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void khoiTaoGiaTriBanDau() {
-
     }
 
     private void addEvents() {
@@ -63,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder alertbuild = new AlertDialog.Builder(MainActivity.this);
                 alertbuild.setMessage("Bạn có thực sự muốn thoát chương trình?");
-                alertbuild.setCancelable(false);
+                alertbuild.setCancelable(true);
                 alertbuild.setPositiveButton(
                         "CÓ",
                         new DialogInterface.OnClickListener() {
@@ -71,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.exit(1);
                             }
                         });
-                alertbuild.setNegativeButton(
+                alertbuild.setPositiveButton(
                         "KHÔNG",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -98,30 +106,35 @@ public class MainActivity extends AppCompatActivity {
                     Message.showDialog(MainActivity.this, "Mật khẩu chưa được nhập.");
                 } else {
 //                    Message.showDialog(MainActivity.this,username+";"+password);
-                    Query account = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSach" + tucach).child(username).child("Password");
+                    Query account = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSach" + tucach).child(username);
                     account.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.getValue() == null) {
+                            Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                            if (!items.hasNext()) {
                                 Message.showDialog(MainActivity.this, "Không tìm thấy username.");
                                 return;
                             }
-
-                            if (dataSnapshot.getValue().toString().equals(password)) {
-                                //Neu nguoi dung chinh xac
-                                SessionManager sessionManager = new SessionManager(MainActivity.this);
-                                sessionManager.login(username);
-                                if (tucach.equals("GiaoVien")) {
-                                    Intent intent = new Intent(MainActivity.this, MenuGiaoVienActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Intent intent = new Intent(MainActivity.this, MenuHocSinhActivity.class);
-                                    startActivity(intent);
+                            while (items.hasNext()) {
+                                DataSnapshot item = items.next();
+                                if (item == null) {
+                                    return;
                                 }
-                            } else {
-                                Message.showDialog(MainActivity.this, "Mật khẩu chưa đúng. ");
+                                if (item.getKey().equals("Password") && item.getValue().toString().equals(password)) {
+                                    //Neu nguoi dung chinh xac
+                                    SessionManager sessionManager = new SessionManager(MainActivity.this);
+                                    sessionManager.login(username);
+                                    if (tucach.equals("GiaoVien")) {
+                                        Intent intent = new Intent(MainActivity.this, MenuGiaoVienActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        Intent intent = new Intent(MainActivity.this, MenuHocSinhActivity.class);
+                                        startActivity(intent);
+                                    }
+                                } else if (item.getKey().equals("Password")) {
+                                    Message.showDialog(MainActivity.this, "Mật khẩu chưa đúng. " + item.getValue().toString());
+                                }
                             }
-
                         }
 
                         @Override

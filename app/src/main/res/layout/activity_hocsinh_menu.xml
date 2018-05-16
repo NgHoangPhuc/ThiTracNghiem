@@ -75,18 +75,17 @@
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:textSize="18dp" />
-
         <Button
-            android:id="@+id/btnRule"
+            android:layout_marginBottom="20dp"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
+            android:text="HƯỚNG DẪN"
+            android:id="@+id/btnRule"
             android:background="#7c8dc7"
-            android:text="LUẬT LỆ"
             android:textColor="#ffffff"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="18dp" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

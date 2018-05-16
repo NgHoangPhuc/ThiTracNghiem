@@ -25,10 +25,9 @@
         <activity android:name="detai.android.activity.giaovien.MenuGiaoVienActivity" />
         <activity android:name="detai.android.activity.giaovien.QuanLyLopActivity" />
         <activity android:name="detai.android.activity.giaovien.XemDiemActivity" />
-        <activity android:name="detai.android.activity.giaovien.QuanLyDeActivity"/>
+        <activity android:name="detai.android.activity.giaovien.QuanLyDeActivity" />
         <activity android:name="detai.android.activity.giaovien.QuanLyCauHoiActivity" />
         <activity android:name="detai.android.activity.giaovien.ChinhSuaCauHoiActivity" />
-        <activity android:name="detai.android.activity.giaovien.TaoMoiCauHoiActivity" />
         <activity android:name="detai.android.activity.hocsinh.BangDiemActivity" />
         <activity android:name="detai.android.activity.RegisterActivity" />
         <activity

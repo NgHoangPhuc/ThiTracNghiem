@@ -1,15 +1,16 @@
 package detai.android.Object;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import java.io.Serializable;
 
 /**
  * Created by admin on 9/24/2016.
  */
-public class CauHoi implements Serializable {
+public class Question implements Serializable {
 
-    private String id;
+    private int id;
 
     private String question;
 
@@ -21,46 +22,52 @@ public class CauHoi implements Serializable {
 
     private String result4;
 
-    private String number;
+    private int level;
 
     private int result;
 
     private int resultSelect;
 
-    public CauHoi() {
+    public Question() {
     }
 
-    public CauHoi(String id) {
-        this.id = id;
-    }
-
-    public CauHoi(String id, String question, String result1, String result2, String result3,
-                  String result4, String number, int result) {
+    public Question(int id, String question, String result1, String result2, String result3,
+                    String result4, int level, int result) {
         this.id = id;
         this.question = question;
         this.result1 = result1;
         this.result2 = result2;
         this.result3 = result3;
         this.result4 = result4;
-        this.number = number;
+        this.level = level;
         this.result = result;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        CauHoi cauHoi = (CauHoi) o;
+        Question question1 = (Question) o;
 
-        return id.equals(cauHoi.id);
+        if (id != question1.id) return false;
+        if (result != question1.result) return false;
+        if (question != null ? !question.equals(question1.question) : question1.question != null)
+            return false;
+        if (result1 != null ? !result1.equals(question1.result1) : question1.result1 != null)
+            return false;
+        if (result2 != null ? !result2.equals(question1.result2) : question1.result2 != null)
+            return false;
+        if (result3 != null ? !result3.equals(question1.result3) : question1.result3 != null)
+            return false;
+        return result4 != null ? result4.equals(question1.result4) : question1.result4 == null;
     }
 
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -104,12 +111,12 @@ public class CauHoi implements Serializable {
         this.result4 = result4;
     }
 
-    public String getNumber() {
-        return number;
+    public int getLevel() {
+        return level;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getResult() {
@@ -139,5 +146,28 @@ public class CauHoi implements Serializable {
         info.put(Constants.COL_CAUHOI_DAPANDUNG, result);
 
         return info;
+    }
+
+    public void ImportQuestion(Cursor cursor) {
+        this.setId(cursor.getInt(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_ID)));
+
+        this.setQuestion(cursor.getString(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_NOIDUNG)));
+
+        this.setResult(cursor.getInt(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_DAPANDUNG)));
+
+        this.setResult1(cursor.getString(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_DAPANA)));
+
+        this.setResult2(cursor.getString(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_DAPANB)));
+
+        this.setResult3(cursor.getString(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_DAPANC)));
+
+        this.setResult4(cursor.getString(cursor.getColumnIndexOrThrow(
+                Constants.COL_CAUHOI_DAPAND)));
     }
 }

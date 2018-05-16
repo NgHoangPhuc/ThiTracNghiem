@@ -1,5 +1,6 @@
 package detai.android.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -75,71 +76,48 @@ public class RegisterActivity extends AppCompatActivity {
                 final String idgiaovien = editTextSearch.getText().toString();
                 final String lop;
                 final String ten = editTextName.getText().toString();
-                haditem = true;
-                if (spinner.getCount() > 0)
+                if(spinner.getCount() > 0)
                     lop = spinner.getSelectedItem().toString();
                 else
                     lop = "";
                 String tucach = "";
-                if (rbGiaoVien.isChecked())
+                if(rbGiaoVien.isChecked())
                     tucach = "GiaoVien";
                 else
                     tucach = "HocSinh";
-                if (username.equals(""))
-                    Message.showDialog(RegisterActivity.this, "Username chưa được nhập");
-                else if (password.equals(""))
-                    Message.showDialog(RegisterActivity.this, "Mật khẩu chưa được nhập");
-                else if (!password.equals(repassword))
-                    Message.showDialog(RegisterActivity.this, "Mật khẩu 1 và mật khẩu 2 chưa giống nhau");
-                else if (ten.equals(""))
-                    Message.showDialog(RegisterActivity.this, "Tên chưa được nhập");
-                else if (idgiaovien.equals("") && tucach.equals("HocSinh"))
-                    Message.showDialog(RegisterActivity.this, "Id giáo viên chưa được nhập");
-                else if (lop.equals("") && tucach.equals("HocSinh"))
-                    Message.showDialog(RegisterActivity.this, "Giáo viên này hiện chưa mở lớp nào.");
+                if(username.equals(""))
+                    Message.showDialog(RegisterActivity.this,"Username chưa được nhập");
+                else if(password.equals(""))
+                    Message.showDialog(RegisterActivity.this,"Mật khẩu chưa được nhập");
+                else if(!password.equals(repassword))
+                    Message.showDialog(RegisterActivity.this,"Mật khẩu 1 và mật khẩu 2 chưa giống nhau");
+                else if(ten.equals(""))
+                    Message.showDialog(RegisterActivity.this,"Tên chưa được nhập");
+                else if(idgiaovien.equals(""))
+                    Message.showDialog(RegisterActivity.this,"Id giáo viên chưa được nhập");
+                else if(lop.equals(""))
+                    Message.showDialog(RegisterActivity.this,"Giáo viên này hiện chưa mở lớp nào.");
                 else {
-                    Query account = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSach" + tucach).child(username);
                     final DatabaseReference user = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSach" + tucach).child(username);
+                    Query account = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSach"+tucach).child(username);
                     final String finalTucach = tucach;
                     account.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.getValue() == null) {
-                                AlertDialog.Builder alertbuild = new AlertDialog.Builder(RegisterActivity.this);
-                                alertbuild.setMessage("Đăng ký thành công.");
-                                alertbuild.setCancelable(true);
-                                alertbuild.setPositiveButton(
-                                        "OK",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                if (finalTucach.equals("HocSinh")) {
-                                                    user.child("GiaoVien").setValue(idgiaovien);
-                                                    user.child("Lop").setValue(lop);
-                                                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                                                            .child("DanhSachGiaoVien").child(idgiaovien).child(lop).child(username).setValue("-1");
-                                                }
-                                                user.child("Ten").setValue(ten);
-                                                user.child("Password").setValue(password);
-                                                finish();
-                                                dialog.cancel();
-                                            }
-                                        });
-                                AlertDialog alert11 = alertbuild.create();
-                                alert11.show();
-                            } else {
-                                AlertDialog.Builder alertbuild = new AlertDialog.Builder(RegisterActivity.this);
-                                alertbuild.setMessage("Username này đã được sử dụng.");
-                                alertbuild.setCancelable(true);
-                                alertbuild.setPositiveButton(
-                                        "OK",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                dialog.cancel();
-                                            }
-                                        });
-                                AlertDialog alert11 = alertbuild.create();
-                                alert11.show();
+                            Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                            haditem = false;
+                            if (!items.hasNext()) {
+                                if (finalTucach.equals("HocSinh")) {
+                                    user.child("GiaoVien").setValue(idgiaovien);
+                                    user.child("Lop").setValue(lop);
+                                    user.child("Ten").setValue(ten);
+                                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                                            .child("DanhSachGiaoVien").child(idgiaovien).child(lop).child(username).setValue("-1");
+                                }
+                                showDialogYN(RegisterActivity.this, "Đăng ký thành công, bạn có muốn trở về trang đăng nhập?");
                             }
+                            else
+                                haditem = true;
                         }
 
                         @Override
@@ -147,6 +125,8 @@ public class RegisterActivity extends AppCompatActivity {
                             Message.showDialog(RegisterActivity.this, "Không thể lấy dữ liệu từ máy chủ, vui lòng kiểm tra lại mạng");
                         }
                     });
+                    if (haditem == true)
+                        Message.showDialog(RegisterActivity.this, "Đã tồn tại id này.");
                 }
             }
         });
@@ -154,11 +134,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 danhsachlop.removeAll(danhsachlop);
-                spinner.setAdapter(new ArrayAdapter<String>(RegisterActivity.this, R.layout.support_simple_spinner_dropdown_item, danhsachlop));
+                spinner.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,R.layout.support_simple_spinner_dropdown_item,danhsachlop));
                 String idgiaovien = editTextSearch.getText().toString();
-                if (idgiaovien.equals("")) {
-                    Message.showDialog(RegisterActivity.this, "ID giáo viên chưa được nhập.");
-                } else {
+                if(idgiaovien.equals("")){
+                    Message.showDialog(RegisterActivity.this,"ID giáo viên chưa được nhập.");
+                }
+                else {
                     Query account = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/").child("DanhSachGiaoVien").child(idgiaovien).child("DanhSachLop");
                     account.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -175,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                                 danhsachlop.add(item.getKey());
                             }
-                            ArrayAdapter arrayAdapter = new ArrayAdapter(RegisterActivity.this, R.layout.support_simple_spinner_dropdown_item, danhsachlop);
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(RegisterActivity.this,R.layout.support_simple_spinner_dropdown_item,danhsachlop);
                             spinner.setAdapter(arrayAdapter);
                         }
 
@@ -191,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 danhsachlop.removeAll(danhsachlop);
-                spinner.setAdapter(new ArrayAdapter<String>(RegisterActivity.this, R.layout.support_simple_spinner_dropdown_item, danhsachlop));
+                spinner.setAdapter(new ArrayAdapter<String>(RegisterActivity.this,R.layout.support_simple_spinner_dropdown_item,danhsachlop));
             }
         });
         rbGiaoVien.setOnClickListener(new View.OnClickListener() {
@@ -222,4 +203,33 @@ public class RegisterActivity extends AppCompatActivity {
         layoutHocsinh = findViewById(R.id.layoutHocsinh);
     }
 
+    void showDialogYN(Context context, String message){
+        AlertDialog.Builder alertbuild = new AlertDialog.Builder(context);
+        alertbuild.setMessage(message);
+        alertbuild.setCancelable(true);
+        alertbuild.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        dialog.cancel();
+                    }
+                });
+
+        alertbuild.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        editTextUsername.setText("");
+                        editTextPassword.setText("");
+                        editTextRePassword.setText("");
+                        editTextSearch.setText("");
+                        editTextSearch.callOnClick();
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = alertbuild.create();
+        alert11.show();
+    }
 }

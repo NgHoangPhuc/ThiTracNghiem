@@ -34,7 +34,6 @@ public class QuanLyLopActivity extends AppCompatActivity{
     Button btnHuy;
     Button btnThem;
     EditText editTextTenLop;
-    LopAdapter lopAdapter;
 
     final ArrayList<Lop> listlop = new ArrayList<>();
 
@@ -48,8 +47,6 @@ public class QuanLyLopActivity extends AppCompatActivity{
     }
 
     private void khoiTaoGiaTriBanDau() {
-        lopAdapter = new LopAdapter(this,R.layout.giaovien_itemlop,listlop);
-        listView.setAdapter(lopAdapter);
         SessionManager sessionManager = new SessionManager(this);
         Query danhsachlop = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop");
@@ -61,7 +58,6 @@ public class QuanLyLopActivity extends AppCompatActivity{
                     DataSnapshot item = items.next();
                     listlop.add(new Lop(item.getKey(),item.getChildrenCount()-1,item.child("De").getValue().toString()));
                 }
-                lopAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -69,6 +65,7 @@ public class QuanLyLopActivity extends AppCompatActivity{
 
             }
         });
+        listView.setAdapter(new LopAdapter(this,R.layout.giaovien_itemlop,listlop));
     }
 
     private void addEvents() {
@@ -114,7 +111,7 @@ public class QuanLyLopActivity extends AppCompatActivity{
                     Lop lopmoi = new Lop(tenlop,0,"-1");
                     listlop.add(lopmoi);
 //                    listView.removeAllViews();
-                    lopAdapter.notifyDataSetChanged();
+                    listView.setAdapter(new LopAdapter(QuanLyLopActivity.this,R.layout.giaovien_itemlop,listlop));
                 }
             }
         });
@@ -130,7 +127,7 @@ public class QuanLyLopActivity extends AppCompatActivity{
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenLop = findViewById(R.id.editTextTenLop);
-        btnLuu = findViewById(R.id.btnBack);
+        btnLuu = findViewById(R.id.btnLuu);
         btnHuy = findViewById(R.id.btnHuy);
         btnThem = findViewById(R.id.btnThem);
     }

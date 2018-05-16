@@ -174,7 +174,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/btnBack"
+        app:layout_constraintBottom_toTopOf="@+id/btnLuu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -220,13 +220,23 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/btnLuu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="16dp"
-        android:text="Quay lại"
+        android:text="Lưu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/btnHuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Hủy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLuu" />
 
 </android.support.constraint.ConstraintLayout>
