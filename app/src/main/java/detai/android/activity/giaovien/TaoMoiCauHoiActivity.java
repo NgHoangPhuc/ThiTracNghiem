@@ -31,15 +31,15 @@ import com.squareup.picasso.Picasso;
 import java.util.Iterator;
 import java.util.UUID;
 
+import detai.android.Object.message.Message;
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
 /**
- * Created by hoang on 08-May-18.
+ * Created by hoang on 13-May-18.
  */
 
-public class ChinhSuaCauHoiActivity extends AppCompatActivity {
-
+public class TaoMoiCauHoiActivity extends AppCompatActivity {
     final int NOIDUNG = 1;
     final int DAPANA = 2;
     final int DAPANB = 3;
@@ -89,6 +89,25 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (noidung.equals("0")) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "NỘI DUNG CÂU HỎI chưa được chọn.");
+                    return;
+                } else if (dapana.equals("0")) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "Đáp án A chưa được chọn.");
+                    return;
+                } else if (dapanb.equals("0")) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "Đáp án B chưa được chọn.");
+                    return;
+                } else if (dapanc.equals("0")) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "Đáp án C chưa được chọn.");
+                    return;
+                } else if (dapand.equals("0")) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "Đáp án D chưa được chọn.");
+                    return;
+                } else if (dapandung == 0) {
+                    Message.showDialog(TaoMoiCauHoiActivity.this, "Đáp án ĐÚNG chưa được chọn.");
+                    return;
+                }
                 finish();
             }
         });
@@ -136,33 +155,46 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                 startActivityForResult(pickPhoto, DAPAND);
             }
         });
-        SessionManager sessionManager = new SessionManager(ChinhSuaCauHoiActivity.this);
-        final DatabaseReference daDung = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                .child(sessionManager.getUsername())
-                .child("DanhSachDe").child(de).child(cauhoi).child("6");
+        final SessionManager sessionManager = new SessionManager(TaoMoiCauHoiActivity.this);
 
         rbA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                daDung.setValue(1);
+                dapandung = 1;
+                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                        .child("DanhSachGiaoVien")
+                        .child(sessionManager.getUsername())
+                        .child("DanhSachDe").child(de).child(cauhoi).child("6").setValue(1);
             }
         });
         rbB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                daDung.setValue(2);
+                dapandung = 2;
+                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                        .child("DanhSachGiaoVien")
+                        .child(sessionManager.getUsername())
+                        .child("DanhSachDe").child(de).child(cauhoi).child("6").setValue(2);
             }
         });
         rbC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                daDung.setValue(3);
+                dapandung = 3;
+                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                        .child("DanhSachGiaoVien")
+                        .child(sessionManager.getUsername())
+                        .child("DanhSachDe").child(de).child(cauhoi).child("6").setValue(3);
             }
         });
         rbD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                daDung.setValue(4);
+                dapandung = 4;
+                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                        .child("DanhSachGiaoVien")
+                        .child(sessionManager.getUsername())
+                        .child("DanhSachDe").child(de).child(cauhoi).child("6").setValue(4);
             }
         });
     }
@@ -174,7 +206,8 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
 
         tvTitle.setText("Đề " + de + " - Câu " + cauhoi);
 
-        final SessionManager sessionManager = new SessionManager(ChinhSuaCauHoiActivity.this);
+        btnBack.setText("Xong");
+        final SessionManager sessionManager = new SessionManager(TaoMoiCauHoiActivity.this);
         Query fbdb = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/");
         fbdb.addValueEventListener(new ValueEventListener() {
             @Override
@@ -197,11 +230,12 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                     else if (Integer.parseInt(item2.getKey()) == 6)
                         dapandung = Integer.parseInt(item2.getValue().toString());
                 }
-                Picasso.with(ChinhSuaCauHoiActivity.this).load(noidung).into(imvNoiDung);
-                Picasso.with(ChinhSuaCauHoiActivity.this).load(dapana).into(imvDapAnA);
-                Picasso.with(ChinhSuaCauHoiActivity.this).load(dapanb).into(imvDapAnB);
-                Picasso.with(ChinhSuaCauHoiActivity.this).load(dapanc).into(imvDapAnC);
-                Picasso.with(ChinhSuaCauHoiActivity.this).load(dapand).into(imvDapAnD);
+
+                Picasso.with(TaoMoiCauHoiActivity.this).load(noidung).into(imvNoiDung);
+                Picasso.with(TaoMoiCauHoiActivity.this).load(dapana).into(imvDapAnA);
+                Picasso.with(TaoMoiCauHoiActivity.this).load(dapanb).into(imvDapAnB);
+                Picasso.with(TaoMoiCauHoiActivity.this).load(dapanc).into(imvDapAnC);
+                Picasso.with(TaoMoiCauHoiActivity.this).load(dapand).into(imvDapAnD);
                 switch (dapandung) {
                     case 1:
                         rbA.setChecked(true);
@@ -230,7 +264,7 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         final FirebaseStorage storage = FirebaseStorage.getInstance("gs://tracnghiem-data001.appspot.com");
         final StorageReference storageReference = storage.getReference();
-        final SessionManager sessionManager = new SessionManager(ChinhSuaCauHoiActivity.this);
+        final SessionManager sessionManager = new SessionManager(TaoMoiCauHoiActivity.this);
         ImageView imageView;
         switch (requestCode) {
             case NOIDUNG:
@@ -264,24 +298,50 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                 }
                 break;
         }
+        if (data != null) {
+            imvNoiDung.setImageURI(data.getData()); //*
 
-        imvNoiDung.setImageURI(data.getData()); //*
+            final ProgressDialog progressDialog = new ProgressDialog(TaoMoiCauHoiActivity.this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
 
-        final ProgressDialog progressDialog = new ProgressDialog(ChinhSuaCauHoiActivity.this);
-        progressDialog.setTitle("Uploading...");
-        progressDialog.show();
-
-        StorageReference ref = storageReference.child("image" + UUID.randomUUID().toString());
-        ref.putFile(data.getData())
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        progressDialog.dismiss();
-                        Uri uri = taskSnapshot.getDownloadUrl();
-                        final String url = uri.getPath();
-                        storage.getReferenceFromUrl(delValue).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
+            StorageReference ref = storageReference.child("image" + UUID.randomUUID().toString());
+            ref.putFile(data.getData())
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Uri uri = taskSnapshot.getDownloadUrl();
+                            final String url = uri.getPath();
+                            if (!delValue.equals("") && !delValue.equals("0"))
+                                storage.getReferenceFromUrl(delValue).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        switch (requestCode) {
+                                            case NOIDUNG:
+                                                noidung = url;
+                                                break;
+                                            case DAPANA:
+                                                dapana = url;
+                                                break;
+                                            case DAPANB:
+                                                dapanb = url;
+                                                break;
+                                            case DAPANC:
+                                                dapanc = url;
+                                                break;
+                                            case DAPAND:
+                                                dapand = url;
+                                                break;
+                                        }
+                                        FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                                                .child("DanhSachGiaoVien").child(sessionManager.getUsername())
+                                                .child("DanhSachDe").child(de).child(cauhoi)
+                                                .child(requestCode + "")
+                                                .setValue("https://firebasestorage.googleapis.com" + url + "?alt=media");
+                                    }
+                                });
+                            else {
                                 switch (requestCode) {
                                     case NOIDUNG:
                                         noidung = url;
@@ -305,23 +365,23 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                                         .child(requestCode + "")
                                         .setValue("https://firebasestorage.googleapis.com" + url + "?alt=media");
                             }
-                        });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(ChinhSuaCauHoiActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                                .getTotalByteCount());
-                        progressDialog.setMessage("Uploaded " + (int) progress + "%");
-                    }
-                });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TaoMoiCauHoiActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                        }
+                    });
+        }
     }
 }

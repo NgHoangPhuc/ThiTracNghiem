@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import detai.android.Adapter.UserInfoAdapter;
-import detai.android.Object.UserInfo;
+import detai.android.Object.User;
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -112,7 +112,7 @@ public class XemDiemActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> hstronglop = dataSnapshot.child("DanhSachGiaoVien").child(sessionManager.getUsername())
                                 .child("DanhSachLop").child(spinnerDanhSachLop.getSelectedItem().toString()).getChildren().iterator();
-                        ArrayList<UserInfo> lisths = new ArrayList<>();
+                        ArrayList<User> lisths = new ArrayList<>();
                         while (hstronglop.hasNext()) {
                             DataSnapshot hs = hstronglop.next();
                             if (hs.getKey().equals("De"))
@@ -137,13 +137,13 @@ public class XemDiemActivity extends AppCompatActivity {
                             while (diems.hasNext()) {
                                 DataSnapshot diem = diems.next();
                                 if (diem.getKey().equals(spinnerDanhSachDe.getSelectedItem().toString())) {
-                                    lisths.add(new UserInfo(tenhs, diem.getValue().toString()));
+                                    lisths.add(new User(tenhs, diem.getValue().toString()));
                                     haddiem = true;
                                     break;
                                 }
                             }
                             if (haddiem == false) {
-                                lisths.add(new UserInfo(tenhs, "Chưa làm bài."));
+                                lisths.add(new User(tenhs, "Chưa làm bài."));
                             }
                         }
 //                        Message.showDialog(XemDiemActivity.this, lisths.size() + "");

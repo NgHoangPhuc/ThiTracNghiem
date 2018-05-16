@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import detai.android.Test;
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -41,7 +40,6 @@ public class MenuHocSinhActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hocsinh_menu);
-        Test test = new Test(MenuHocSinhActivity.this);
         try {
             addControls();
         } catch (IOException e) {

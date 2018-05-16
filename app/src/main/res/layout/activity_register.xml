@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="493dp"
+        android:layout_height="505dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,10 +25,10 @@
             android:textSize="50dp" />
 
         <LinearLayout
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -47,10 +47,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -69,10 +69,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/textView11"
@@ -111,14 +111,14 @@
                 android:layout_weight="2"
                 android:ems="10"
                 android:hint="Họ và tên"
-                android:inputType="textNoSuggestions|textVisiblePassword" />
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/textView15"
@@ -158,10 +158,10 @@
             android:visibility="visible">
 
             <LinearLayout
-                android:weightSum="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <EditText
                     android:id="@+id/editTextSearch"
@@ -170,7 +170,7 @@
                     android:layout_weight="2"
                     android:ems="10"
                     android:hint="ID giáo viên"
-                    android:inputType="textPersonName" />
+                    android:inputType="textNoSuggestions|textVisiblePassword" />
 
                 <Button
                     android:id="@+id/btnSearch"
@@ -188,7 +188,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:padding="10dp">

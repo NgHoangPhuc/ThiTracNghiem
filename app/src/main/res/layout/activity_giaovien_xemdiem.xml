@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/pen_notebook_spiral_113957_540x960">
 
     <Button
         android:id="@+id/btnBack"
@@ -36,7 +37,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center_vertical|center_horizontal"
             android:text="Điểm kiểm tra"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             android:textSize="30dp" />
 
         <LinearLayout
@@ -51,13 +52,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Lớp:"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimary" />
 
             <Spinner
                 android:id="@+id/spinnerDanhSachLop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:background="@android:color/background_light" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,13 +73,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Đề:"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimary" />
 
             <Spinner
                 android:id="@+id/spinnerDanhSachDe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:background="@android:color/background_light" />
         </LinearLayout>
 
     </LinearLayout>

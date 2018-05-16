@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by admin on 9/24/2016.
  */
 
-public class UserInfo implements Serializable {
+public class User implements Serializable {
 
     private Integer id;
 
@@ -19,11 +19,11 @@ public class UserInfo implements Serializable {
 
     private String soDiemDatDuoc;
 
-    public UserInfo() {
+    public User() {
 
     }
 
-    public UserInfo(String tenThiSinh, String soDiemDatDuoc) {
+    public User(String tenThiSinh, String soDiemDatDuoc) {
         this.tenThiSinh = tenThiSinh;
         this.soDiemDatDuoc = soDiemDatDuoc;
     }
@@ -87,7 +87,7 @@ public class UserInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "UserInfo{" +
+        return "User{" +
                 "Tên thí sinh: '" + tenThiSinh + '\'' +
                 ", Số câu đúng: " + soCauDung +
                 ", Số điểm đạt được: '" + soDiemDatDuoc + '\'' +

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +34,13 @@ public class QuanLyDeActivity extends AppCompatActivity {
 
     ListView listView;
     EditText editTextTenDe;
+    DeAdapter deAdapter;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        khoiTaoGiaTriBanDau();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,17 +53,37 @@ public class QuanLyDeActivity extends AppCompatActivity {
     }
 
     private void khoiTaoGiaTriBanDau() {
+        listde = new ArrayList<>();
+        deAdapter = new DeAdapter(this,R.layout.giaovien_itemde, listde);
+        listView.setAdapter(deAdapter);
+
         SessionManager sessionManager = new SessionManager(this);
         Query danhsachde = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe");
-        danhsachde.addValueEventListener(new ValueEventListener() {
+        danhsachde.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                while (items.hasNext()) {
-                    DataSnapshot item = items.next();
-                    listde.add(item.getKey());
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                if (dataSnapshot != null) {
+                    listde.add(dataSnapshot.getKey());
+                    deAdapter.notifyDataSetChanged();
                 }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -63,7 +91,6 @@ public class QuanLyDeActivity extends AppCompatActivity {
 
             }
         });
-        listView.setAdapter(new DeAdapter(this,R.layout.giaovien_itemde, listde));
     }
 
     private void addEvents() {
@@ -123,7 +150,7 @@ public class QuanLyDeActivity extends AppCompatActivity {
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenDe = findViewById(R.id.editTextTenDe);
-        btnLuu = findViewById(R.id.btnLuu);
+        btnLuu = findViewById(R.id.btnBack);
         btnHuy = findViewById(R.id.btnHuy);
         btnThem = findViewById(R.id.btnThem);
 

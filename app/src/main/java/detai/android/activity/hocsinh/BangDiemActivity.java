@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import detai.android.Adapter.UserInfoAdapter;
-import detai.android.Object.UserInfo;
+import detai.android.Object.User;
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -28,7 +28,7 @@ public class BangDiemActivity extends AppCompatActivity {
 
     ListView lvUserInfo;
     UserInfoAdapter userInfoAdapter;
-    ArrayList<UserInfo> arrayUserInfo;
+    ArrayList<User> arrayUserInfo;
     Button btnBack;
     int currentPosition;
 
@@ -54,7 +54,7 @@ public class BangDiemActivity extends AppCompatActivity {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()){
                     DataSnapshot item = items.next();
-                    arrayUserInfo.add(new UserInfo("Đề "+item.getKey()+":",item.getValue().toString()+" điểm"));
+                    arrayUserInfo.add(new User("Đề "+item.getKey()+":",item.getValue().toString()+" điểm"));
                 }
             }
 
@@ -111,7 +111,7 @@ public class BangDiemActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.mnDelete) {
-            UserInfo userInfo = arrayUserInfo.get(currentPosition);
+            User userInfo = arrayUserInfo.get(currentPosition);
             if (userInfo != null) {
                 arrayUserInfo.remove(userInfo);
                 userInfoAdapter.notifyDataSetChanged();
