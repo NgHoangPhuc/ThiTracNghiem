@@ -8,11 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,13 +30,12 @@ import detai.android.thitracnghiem.R;
 public class QuanLyLopActivity extends AppCompatActivity{
 
     ListView listView;
-    Button btnLuu;
-    Button btnHuy;
+    Button btnQuayLai;
     Button btnThem;
     EditText editTextTenLop;
     LopAdapter lopAdapter;
 
-    final ArrayList<Lop> listlop = new ArrayList<>();
+    ArrayList<Lop> listlop = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,20 +47,42 @@ public class QuanLyLopActivity extends AppCompatActivity{
     }
 
     private void khoiTaoGiaTriBanDau() {
+        listlop = new ArrayList<>();
         lopAdapter = new LopAdapter(this,R.layout.giaovien_itemlop,listlop);
         listView.setAdapter(lopAdapter);
         SessionManager sessionManager = new SessionManager(this);
         Query danhsachlop = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop");
-        danhsachlop.addValueEventListener(new ValueEventListener() {
+        danhsachlop.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                String de = "";
+                int count=0;
                 while (items.hasNext()){
                     DataSnapshot item = items.next();
-                    listlop.add(new Lop(item.getKey(),item.getChildrenCount()-1,item.child("De").getValue().toString()));
+                    if(!item.getKey().equals("De"))
+                        count++;
+                    else
+                        de = item.getValue().toString();
                 }
+                listlop.add(new Lop(dataSnapshot.getKey(),count,de));
                 lopAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -72,36 +93,7 @@ public class QuanLyLopActivity extends AppCompatActivity{
     }
 
     private void addEvents() {
-        btnLuu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final SessionManager sessionManager = new SessionManager(QuanLyLopActivity.this);
-                for(Lop x: listlop){
-                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                            .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop").child(x.getName()).child("De").setValue(x.getDe());
-                }
-                final Query danhsachlop = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                        .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop");
-                danhsachlop.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                        while (items.hasNext()){
-                            DataSnapshot item = items.next();
-                            if(!listlop.contains(new Lop(item.getKey())))
-                                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                                        .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop").child(item.getKey()).removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                finish();
-            }
-        });
+        final SessionManager sessionManager = new SessionManager(QuanLyLopActivity.this);
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,15 +103,13 @@ public class QuanLyLopActivity extends AppCompatActivity{
                     Message.showDialog(QuanLyLopActivity.this,"Đã tồn tại tên lớp này, vui lòng chọn tên lớp khác.");
                 }
                 else {
-                    Lop lopmoi = new Lop(tenlop,0,"-1");
-                    listlop.add(lopmoi);
-//                    listView.removeAllViews();
-                    lopAdapter.notifyDataSetChanged();
+                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                            .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop").child(tenlop).setValue("-1");
                 }
             }
         });
 
-        btnHuy.setOnClickListener(new View.OnClickListener() {
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -130,8 +120,7 @@ public class QuanLyLopActivity extends AppCompatActivity{
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenLop = findViewById(R.id.editTextTenLop);
-        btnLuu = findViewById(R.id.btnBack);
-        btnHuy = findViewById(R.id.btnHuy);
+        btnQuayLai = findViewById(R.id.btnQuayLai);
         btnThem = findViewById(R.id.btnThem);
     }
 }

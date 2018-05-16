@@ -13,10 +13,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import detai.android.Adapter.DeAdapter;
 import detai.android.Object.message.Message;
@@ -29,7 +27,7 @@ import detai.android.thitracnghiem.R;
 
 public class QuanLyDeActivity extends AppCompatActivity {
 
-    Button btnLuu,btnHuy,btnThem;
+    Button btnQuayLai,btnThem;
     ArrayList<String> listde;
 
     ListView listView;
@@ -94,36 +92,7 @@ public class QuanLyDeActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
-        btnLuu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final SessionManager sessionManager = new SessionManager(QuanLyDeActivity.this);
-                for (String x : listde) {
-                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                            .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(x).setValue("-1");
-                }
-                final Query danhsachde = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                        .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe");
-                danhsachde.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                        while (items.hasNext()) {
-                            DataSnapshot item = items.next();
-                            if (!listde.contains(item.getKey()))
-                                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
-                                        .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(item.getKey()).removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                finish();
-            }
-        });
+        final SessionManager sessionManager = new SessionManager(QuanLyDeActivity.this);
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,14 +101,13 @@ public class QuanLyDeActivity extends AppCompatActivity {
                 if (listde.contains(tende)) {
                     Message.showDialog(QuanLyDeActivity.this, "Đã tồn tại tên lớp này, vui lòng chọn tên lớp khác.");
                 } else {
-                    listde.add(tende);
-//                    listView.removeAllViews();
-                    listView.setAdapter(new DeAdapter(QuanLyDeActivity.this, R.layout.giaovien_itemde, listde));
+                    FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                            .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(tende).setValue("-1");
                 }
             }
         });
 
-        btnHuy.setOnClickListener(new View.OnClickListener() {
+        btnQuayLai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -150,8 +118,7 @@ public class QuanLyDeActivity extends AppCompatActivity {
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenDe = findViewById(R.id.editTextTenDe);
-        btnLuu = findViewById(R.id.btnBack);
-        btnHuy = findViewById(R.id.btnHuy);
+        btnQuayLai = findViewById(R.id.btnQuayLai);
         btnThem = findViewById(R.id.btnThem);
 
         listde = new ArrayList<>();

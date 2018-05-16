@@ -51,7 +51,7 @@ public class DeAdapter extends ArrayAdapter {
 
         tvDe.setText(listde.get(position));
 
-        SessionManager sessionManager = new SessionManager(context);
+        final SessionManager sessionManager = new SessionManager(context);
         Query de = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(listde.get(position));
         dem = 0;
@@ -102,6 +102,8 @@ public class DeAdapter extends ArrayAdapter {
                         "Có",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                                        .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(listde.get(position)).removeValue();
                                 listde.remove(position);
                                 notifyDataSetChanged();
                                 dialog.cancel();

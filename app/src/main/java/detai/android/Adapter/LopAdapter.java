@@ -57,7 +57,7 @@ public class LopAdapter extends ArrayAdapter {
         final ArrayList<String> listde = new ArrayList<>();
         listde.add("Trống");
 
-        SessionManager sessionManager = new SessionManager(context);
+        final SessionManager sessionManager = new SessionManager(context);
         Query danhsachde = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe");
 
@@ -92,9 +92,9 @@ public class LopAdapter extends ArrayAdapter {
                 if(de.equals("Trống"))
                     de = "-1";
 
-                Lop lop = list.get(position);
-                lop.setDe(de);
-                list.set(list.indexOf(lop),lop);
+                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                        .child("DanhSachGiaoVien").child(sessionManager.getUsername())
+                        .child("DanhSachLop").child(list.get(position).getName()).child("De").setValue(de);
             }
 
             @Override
@@ -113,6 +113,8 @@ public class LopAdapter extends ArrayAdapter {
                     "Có",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                                    .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop").child(list.get(position).getName()).removeValue();
                             list.remove(position);
                             notifyDataSetChanged();
                             dialog.cancel();
