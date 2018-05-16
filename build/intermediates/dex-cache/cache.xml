@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="24dedd304d6ec26381f9fc3647dcfb80b91781ff">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_1221c593fd022211ba3fcfd27120310e789626ca.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.1_58d2980a1ff4995c18aa1283398365d3f950c80e.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.1_b9b5ca3b833381c15dd0b0c0473c601f4a55921b.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.1_72043dff87e599536c9404124777e0c743d51213.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="170d545a8f40ea02f2635738f0ab561aa1a7d0de">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\instant-run_691f7f4fa55c861e49f12d09a43024c357109020.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.1_333b93e539944fb416bb85ee76b4802f7fc07864.jar" />
+    </item>
+    <item
+        jar="C:\Users\admin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\support-annotations-24.1.1_17d667c7c78a677c8f556141dcf1e31025a0a8c6.jar" />
+    </item>
+    <item
+        jar="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="D:\CA_NHAN\Android\Src\ThiTracNghiem\ThiTracNghiem\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.1_095b6452278b1f5e97e94e9b9e862fcb5896e04d.jar" />
+    </item>
+
+</items>
