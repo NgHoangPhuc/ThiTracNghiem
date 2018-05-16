@@ -24,8 +24,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+<<<<<<< HEAD
 import detai.android.Object.Constants;
 import detai.android.Object.Question;
+=======
+import detai.android.Object.CauHoi;
+import detai.android.Object.Constants;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -58,9 +63,15 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
     int bg_dapan_chon;
     int soCauToiDa;
     int soCau;
+<<<<<<< HEAD
     ArrayList<Question> dsCauHoi;
     //    ThiTracNghiemDbContext db;
     Question cauHoi;
+=======
+    ArrayList<CauHoi> dsCauHoi;
+    //    ThiTracNghiemDbContext db;
+    CauHoi cauHoi;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     View.OnClickListener chonDapAn;
     View.OnClickListener xuLyCauHoi;
@@ -107,7 +118,11 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
                     int soCauDung = 0;
                     double diemSo = 0;
 
+<<<<<<< HEAD
                     for (Question cauHoi : dsCauHoi) {
+=======
+                    for (CauHoi cauHoi : dsCauHoi) {
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
                         if (cauHoi.getResultSelect() == cauHoi.getResult()) {
                             soCauDung++;
@@ -275,10 +290,18 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
                 Iterator<DataSnapshot> deitems = dataSnapshot.child("DanhSachGiaoVien").child(giaovien).child("DanhSachDe").child(de).getChildren().iterator();
                 while (deitems.hasNext()) {
                     String noidung = "", dapana = "", dapanb = "", dapanc = "", dapand = "";
+<<<<<<< HEAD
                     int id = 0, dapandung = 0;
 
                     DataSnapshot item = deitems.next();
                     id = Integer.parseInt(item.getKey());
+=======
+                    String id = "0";
+                    int dapandung = 0;
+
+                    DataSnapshot item = deitems.next();
+                    id = item.getKey();
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
                     Iterator<DataSnapshot> cauhoiitems = item.getChildren().iterator();
                     while (cauhoiitems.hasNext()) {
@@ -296,7 +319,11 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
                         else if (Integer.parseInt(item2.getKey()) % 10 == 6)
                             dapandung = Integer.parseInt(item2.getValue().toString());
                     }
+<<<<<<< HEAD
                     dsCauHoi.add(new Question(id, noidung, dapana, dapanb, dapanc, dapand, 0, dapandung));
+=======
+                    dsCauHoi.add(new CauHoi(id, noidung, dapana, dapanb, dapanc, dapand, 0+"", dapandung));
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 soCauToiDa = dsCauHoi.size();
                 soCau = 0;
@@ -383,7 +410,11 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
 
     private boolean kiemTraHopLeKhiKetThuc() {
 
+<<<<<<< HEAD
         for (Question cauHoi : dsCauHoi) {
+=======
+        for (CauHoi cauHoi : dsCauHoi) {
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             if (cauHoi.getResultSelect() <= 0) {
                 return false;
             }
@@ -438,7 +469,11 @@ public class ThiTracNghiemActivity extends AppCompatActivity {
         int soCauDung = 0;
         double diemSo = 0;
 
+<<<<<<< HEAD
         for (Question cauHoi : dsCauHoi) {
+=======
+        for (CauHoi cauHoi : dsCauHoi) {
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
             if (cauHoi.getResultSelect() == cauHoi.getResult()) {
                 soCauDung++;

@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+<<<<<<< HEAD
+=======
+import com.google.firebase.database.ChildEventListener;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +37,16 @@ public class QuanLyDeActivity extends AppCompatActivity {
 
     ListView listView;
     EditText editTextTenDe;
+<<<<<<< HEAD
+=======
+    DeAdapter deAdapter;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        khoiTaoGiaTriBanDau();
+    }
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +59,7 @@ public class QuanLyDeActivity extends AppCompatActivity {
     }
 
     private void khoiTaoGiaTriBanDau() {
+<<<<<<< HEAD
         SessionManager sessionManager = new SessionManager(this);
         Query danhsachde = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe");
@@ -56,6 +71,39 @@ public class QuanLyDeActivity extends AppCompatActivity {
                     DataSnapshot item = items.next();
                     listde.add(item.getKey());
                 }
+=======
+        listde = new ArrayList<>();
+        deAdapter = new DeAdapter(this,R.layout.giaovien_itemde, listde);
+        listView.setAdapter(deAdapter);
+
+        SessionManager sessionManager = new SessionManager(this);
+        Query danhsachde = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe");
+        danhsachde.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                if (dataSnapshot != null) {
+                    listde.add(dataSnapshot.getKey());
+                    deAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             }
 
             @Override
@@ -63,7 +111,10 @@ public class QuanLyDeActivity extends AppCompatActivity {
 
             }
         });
+<<<<<<< HEAD
         listView.setAdapter(new DeAdapter(this,R.layout.giaovien_itemde, listde));
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
     }
 
     private void addEvents() {
@@ -123,7 +174,11 @@ public class QuanLyDeActivity extends AppCompatActivity {
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenDe = findViewById(R.id.editTextTenDe);
+<<<<<<< HEAD
         btnLuu = findViewById(R.id.btnLuu);
+=======
+        btnLuu = findViewById(R.id.btnBack);
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         btnHuy = findViewById(R.id.btnHuy);
         btnThem = findViewById(R.id.btnThem);
 

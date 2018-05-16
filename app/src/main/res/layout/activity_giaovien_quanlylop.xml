@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+=======
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pen_notebook_spiral_113957_540x960"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     <TextView
         android:id="@+id/textView12"
@@ -13,6 +24,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         android:text="Danh sách lớp"
+<<<<<<< HEAD
+=======
+        android:textColor="@android:color/background_light"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +42,12 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@+id/btnLuu"
+=======
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +64,10 @@
         android:hint="Nhập tên lớp sẽ thêm"
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
+<<<<<<< HEAD
+=======
+        android:textColor="@android:color/background_light"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         app:layout_constraintEnd_toStartOf="@+id/btnThem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -54,17 +78,33 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+<<<<<<< HEAD
         android:text="Thêm lớp"
+=======
+        android:background="@android:color/holo_blue_light"
+        android:text="Thêm lớp"
+        android:textColor="@android:color/background_light"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/btnLuu"
+=======
+        android:id="@+id/btnBack"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
+<<<<<<< HEAD
         android:text="Lưu"
+=======
+        android:background="@android:color/holo_green_light"
+        android:text="Lưu"
+        android:textColor="@android:color/background_light"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -76,7 +116,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="Hủy"
+<<<<<<< HEAD
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLuu"
+=======
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnBack"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         app:layout_constraintTop_toBottomOf="@+id/listView" />
 </android.support.constraint.ConstraintLayout>

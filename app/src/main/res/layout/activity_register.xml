@@ -9,7 +9,11 @@
 
     <LinearLayout
         android:layout_width="300dp"
+<<<<<<< HEAD
         android:layout_height="493dp"
+=======
+        android:layout_height="505dp"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,10 +29,17 @@
             android:textSize="50dp" />
 
         <LinearLayout
+<<<<<<< HEAD
             android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
             <TextView
                 android:layout_width="0dp"
@@ -47,10 +58,17 @@
         </LinearLayout>
 
         <LinearLayout
+<<<<<<< HEAD
             android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
             <TextView
                 android:layout_width="0dp"
@@ -69,10 +87,17 @@
         </LinearLayout>
 
         <LinearLayout
+<<<<<<< HEAD
             android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
             <TextView
                 android:id="@+id/textView11"
@@ -111,6 +136,7 @@
                 android:layout_weight="2"
                 android:ems="10"
                 android:hint="Họ và tên"
+<<<<<<< HEAD
                 android:inputType="textNoSuggestions|textVisiblePassword" />
         </LinearLayout>
 
@@ -119,6 +145,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+=======
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
             <TextView
                 android:id="@+id/textView15"
@@ -158,10 +194,17 @@
             android:visibility="visible">
 
             <LinearLayout
+<<<<<<< HEAD
                 android:weightSum="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+=======
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
                 <EditText
                     android:id="@+id/editTextSearch"
@@ -170,7 +213,11 @@
                     android:layout_weight="2"
                     android:ems="10"
                     android:hint="ID giáo viên"
+<<<<<<< HEAD
                     android:inputType="textPersonName" />
+=======
+                    android:inputType="textNoSuggestions|textVisiblePassword" />
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
                 <Button
                     android:id="@+id/btnSearch"
@@ -188,7 +235,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
+=======
+            android:layout_height="wrap_content"
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:padding="10dp">

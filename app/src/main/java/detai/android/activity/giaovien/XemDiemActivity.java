@@ -20,7 +20,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import detai.android.Adapter.UserInfoAdapter;
+<<<<<<< HEAD
 import detai.android.Object.UserInfo;
+=======
+import detai.android.Object.User;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -112,7 +116,11 @@ public class XemDiemActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> hstronglop = dataSnapshot.child("DanhSachGiaoVien").child(sessionManager.getUsername())
                                 .child("DanhSachLop").child(spinnerDanhSachLop.getSelectedItem().toString()).getChildren().iterator();
+<<<<<<< HEAD
                         ArrayList<UserInfo> lisths = new ArrayList<>();
+=======
+                        ArrayList<User> lisths = new ArrayList<>();
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                         while (hstronglop.hasNext()) {
                             DataSnapshot hs = hstronglop.next();
                             if (hs.getKey().equals("De"))
@@ -137,13 +145,21 @@ public class XemDiemActivity extends AppCompatActivity {
                             while (diems.hasNext()) {
                                 DataSnapshot diem = diems.next();
                                 if (diem.getKey().equals(spinnerDanhSachDe.getSelectedItem().toString())) {
+<<<<<<< HEAD
                                     lisths.add(new UserInfo(tenhs, diem.getValue().toString()));
+=======
+                                    lisths.add(new User(tenhs, diem.getValue().toString()));
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                                     haddiem = true;
                                     break;
                                 }
                             }
                             if (haddiem == false) {
+<<<<<<< HEAD
                                 lisths.add(new UserInfo(tenhs, "Chưa làm bài."));
+=======
+                                lisths.add(new User(tenhs, "Chưa làm bài."));
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                             }
                         }
 //                        Message.showDialog(XemDiemActivity.this, lisths.size() + "");

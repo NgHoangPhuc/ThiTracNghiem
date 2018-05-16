@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+=======
+import com.google.firebase.database.ChildEventListener;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +36,11 @@ public class DeAdapter extends ArrayAdapter {
     Context context;
     int resource;
     ArrayList<String> listde;
+<<<<<<< HEAD
 
+=======
+    int dem;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     public DeAdapter(@NonNull Context context, int resource, @NonNull ArrayList<String> listde) {
         super(context, resource, listde);
@@ -53,10 +61,35 @@ public class DeAdapter extends ArrayAdapter {
         SessionManager sessionManager = new SessionManager(context);
         Query de = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachDe").child(listde.get(position));
+<<<<<<< HEAD
         de.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 tvSoCau.setText(dataSnapshot.getChildrenCount()+"");
+=======
+        dem = 0;
+        tvSoCau.setText(dem+"");
+        de.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                dem++;
+                tvSoCau.setText(dem+"");
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             }
 
             @Override

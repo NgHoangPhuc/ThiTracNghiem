@@ -20,7 +20,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+<<<<<<< HEAD
 import detai.android.Test;
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -41,7 +44,10 @@ public class MenuHocSinhActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hocsinh_menu);
+<<<<<<< HEAD
         Test test = new Test(MenuHocSinhActivity.this);
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         try {
             addControls();
         } catch (IOException e) {

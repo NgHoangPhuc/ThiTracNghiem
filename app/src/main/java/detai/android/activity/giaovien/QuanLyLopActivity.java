@@ -34,6 +34,10 @@ public class QuanLyLopActivity extends AppCompatActivity{
     Button btnHuy;
     Button btnThem;
     EditText editTextTenLop;
+<<<<<<< HEAD
+=======
+    LopAdapter lopAdapter;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     final ArrayList<Lop> listlop = new ArrayList<>();
 
@@ -47,6 +51,11 @@ public class QuanLyLopActivity extends AppCompatActivity{
     }
 
     private void khoiTaoGiaTriBanDau() {
+<<<<<<< HEAD
+=======
+        lopAdapter = new LopAdapter(this,R.layout.giaovien_itemlop,listlop);
+        listView.setAdapter(lopAdapter);
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         SessionManager sessionManager = new SessionManager(this);
         Query danhsachlop = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
                 .child("DanhSachGiaoVien").child(sessionManager.getUsername()).child("DanhSachLop");
@@ -58,6 +67,10 @@ public class QuanLyLopActivity extends AppCompatActivity{
                     DataSnapshot item = items.next();
                     listlop.add(new Lop(item.getKey(),item.getChildrenCount()-1,item.child("De").getValue().toString()));
                 }
+<<<<<<< HEAD
+=======
+                lopAdapter.notifyDataSetChanged();
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             }
 
             @Override
@@ -65,7 +78,10 @@ public class QuanLyLopActivity extends AppCompatActivity{
 
             }
         });
+<<<<<<< HEAD
         listView.setAdapter(new LopAdapter(this,R.layout.giaovien_itemlop,listlop));
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
     }
 
     private void addEvents() {
@@ -111,7 +127,11 @@ public class QuanLyLopActivity extends AppCompatActivity{
                     Lop lopmoi = new Lop(tenlop,0,"-1");
                     listlop.add(lopmoi);
 //                    listView.removeAllViews();
+<<<<<<< HEAD
                     listView.setAdapter(new LopAdapter(QuanLyLopActivity.this,R.layout.giaovien_itemlop,listlop));
+=======
+                    lopAdapter.notifyDataSetChanged();
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
             }
         });
@@ -127,7 +147,11 @@ public class QuanLyLopActivity extends AppCompatActivity{
     private void addControls() {
         listView = findViewById(R.id.listView);
         editTextTenLop = findViewById(R.id.editTextTenLop);
+<<<<<<< HEAD
         btnLuu = findViewById(R.id.btnLuu);
+=======
+        btnLuu = findViewById(R.id.btnBack);
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         btnHuy = findViewById(R.id.btnHuy);
         btnThem = findViewById(R.id.btnThem);
     }

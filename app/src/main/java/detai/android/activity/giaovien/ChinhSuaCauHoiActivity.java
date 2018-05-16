@@ -1,13 +1,19 @@
 package detai.android.activity.giaovien;
 
 import android.app.ProgressDialog;
+<<<<<<< HEAD
 import android.content.DialogInterface;
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+<<<<<<< HEAD
 import android.support.v7.app.AlertDialog;
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +26,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+<<<<<<< HEAD
+=======
+import com.google.firebase.database.DatabaseReference;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -32,8 +42,11 @@ import com.squareup.picasso.Picasso;
 import java.util.Iterator;
 import java.util.UUID;
 
+<<<<<<< HEAD
 import detai.android.Object.Question;
 import detai.android.Object.message.Message;
+=======
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 import detai.android.Object.session.SessionManager;
 import detai.android.thitracnghiem.R;
 
@@ -43,6 +56,7 @@ import detai.android.thitracnghiem.R;
 
 public class ChinhSuaCauHoiActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     final int NOIDUNG = 0;
     final int DAPANA = 1;
     final int DAPANB = 2;
@@ -55,6 +69,16 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
     String d_changed = "";
     Question q_new = new Question();
 
+=======
+    final int NOIDUNG = 1;
+    final int DAPANA = 2;
+    final int DAPANB = 3;
+    final int DAPANC = 4;
+    final int DAPAND = 5;
+
+    String id = "", noidung = "", dapana = "", dapanb = "", dapanc = "", dapand = "";
+    int dapandung = 0;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
     String de = "", cauhoi = "";
     TextView tvTitle;
     ImageView imvNoiDung;
@@ -66,12 +90,21 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
     RadioButton rbB;
     RadioButton rbC;
     RadioButton rbD;
+<<<<<<< HEAD
     Button btnLuu, btnHuy;
+=======
+    Button btnBack;
+    String delValue = "";
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_giaovien_chinhsuade);
+=======
+        setContentView(R.layout.activity_giaovien_chinhsuacauhoi);
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
         addControls();
         addEvents();
         khoiTaoGiaTriBanDau();
@@ -88,12 +121,20 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
         rbB = findViewById(R.id.rbB);
         rbC = findViewById(R.id.rbC);
         rbD = findViewById(R.id.rbD);
+<<<<<<< HEAD
         btnLuu = findViewById(R.id.btnLuu);
         btnHuy = findViewById(R.id.btnHuy);
     }
 
     private void addEvents() {
         btnHuy.setOnClickListener(new View.OnClickListener() {
+=======
+        btnBack = findViewById(R.id.btnBack);
+    }
+
+    private void addEvents() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             @Override
             public void onClick(View v) {
                 finish();
@@ -143,6 +184,38 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                 startActivityForResult(pickPhoto, DAPAND);
             }
         });
+<<<<<<< HEAD
+=======
+        SessionManager sessionManager = new SessionManager(ChinhSuaCauHoiActivity.this);
+        final DatabaseReference daDung = FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                .child(sessionManager.getUsername())
+                .child("DanhSachDe").child(de).child(cauhoi).child("6");
+
+        rbA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                daDung.setValue(1);
+            }
+        });
+        rbB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                daDung.setValue(2);
+            }
+        });
+        rbC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                daDung.setValue(3);
+            }
+        });
+        rbD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                daDung.setValue(4);
+            }
+        });
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
     }
 
     private void khoiTaoGiaTriBanDau() {
@@ -159,6 +232,7 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> cauhoiitems = dataSnapshot.child("DanhSachGiaoVien").child(sessionManager.getUsername())
                         .child("DanhSachDe").child(de).child(cauhoi).getChildren().iterator();
+<<<<<<< HEAD
                 String noidung = "", dapana = "", dapanb = "", dapanc = "", dapand = "";
                 int id = 0, dapandung = 0;
                 while (cauhoiitems.hasNext()) {
@@ -174,6 +248,22 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                     else if (Integer.parseInt(item2.getKey()) % 10 == 5)
                         dapand = item2.getValue().toString();
                     else if (Integer.parseInt(item2.getKey()) % 10 == 6)
+=======
+                id = cauhoi;
+                while (cauhoiitems.hasNext()) {
+                    DataSnapshot item2 = cauhoiitems.next();
+                    if (Integer.parseInt(item2.getKey()) == 1)
+                        noidung = item2.getValue().toString();
+                    else if (Integer.parseInt(item2.getKey()) == 2)
+                        dapana = item2.getValue().toString();
+                    else if (Integer.parseInt(item2.getKey()) == 3)
+                        dapanb = item2.getValue().toString();
+                    else if (Integer.parseInt(item2.getKey()) == 4)
+                        dapanc = item2.getValue().toString();
+                    else if (Integer.parseInt(item2.getKey()) == 5)
+                        dapand = item2.getValue().toString();
+                    else if (Integer.parseInt(item2.getKey()) == 6)
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                         dapandung = Integer.parseInt(item2.getValue().toString());
                 }
                 Picasso.with(ChinhSuaCauHoiActivity.this).load(noidung).into(imvNoiDung);
@@ -195,6 +285,7 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
                         rbD.setChecked(true);
                         break;
                 }
+<<<<<<< HEAD
                 q_new = new Question(Integer.parseInt(cauhoi),
                         noidung,
                         dapana,
@@ -278,6 +369,9 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
 //                        finish();
                     }
                 });
+=======
+
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
             }
 
             @Override
@@ -288,39 +382,133 @@ public class ChinhSuaCauHoiActivity extends AppCompatActivity {
     }
 
     @Override
+<<<<<<< HEAD
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case NOIDUNG:
                 if (resultCode == RESULT_OK && data != null) {
                     imvNoiDung.setImageURI(data.getData());
                     noidung_changed = data.getData();
+=======
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
+        final FirebaseStorage storage = FirebaseStorage.getInstance("gs://tracnghiem-data001.appspot.com");
+        final StorageReference storageReference = storage.getReference();
+        final SessionManager sessionManager = new SessionManager(ChinhSuaCauHoiActivity.this);
+        ImageView imageView;
+        switch (requestCode) {
+            case NOIDUNG:
+                if (resultCode == RESULT_OK && data != null) {
+                    imageView = imvNoiDung;
+                    delValue = noidung;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 break;
             case DAPANA:
                 if (resultCode == RESULT_OK && data != null) {
+<<<<<<< HEAD
                     imvDapAnA.setImageURI(data.getData());
                     a_changed = data.getData().getPath();
+=======
+                    imageView = imvDapAnA;
+                    delValue = dapana;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 break;
             case DAPANB:
                 if (resultCode == RESULT_OK && data != null) {
+<<<<<<< HEAD
                     imvDapAnB.setImageURI(data.getData());
                     b_changed = data.getData().getPath();
+=======
+                    imageView = imvDapAnB;
+                    delValue = dapanb;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 break;
             case DAPANC:
                 if (resultCode == RESULT_OK && data != null) {
+<<<<<<< HEAD
                     imvDapAnC.setImageURI(data.getData());
                     c_changed = data.getData().getPath();
+=======
+                    imageView = imvDapAnC;
+                    delValue = dapanc;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 break;
             case DAPAND:
                 if (resultCode == RESULT_OK && data != null) {
+<<<<<<< HEAD
                     imvDapAnD.setImageURI(data.getData());
                     d_changed = data.getData().getPath();
+=======
+                    imageView = imvDapAnD;
+                    delValue = dapand;
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
                 }
                 break;
         }
 
+<<<<<<< HEAD
+=======
+        imvNoiDung.setImageURI(data.getData()); //*
+
+        final ProgressDialog progressDialog = new ProgressDialog(ChinhSuaCauHoiActivity.this);
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
+
+        StorageReference ref = storageReference.child("image" + UUID.randomUUID().toString());
+        ref.putFile(data.getData())
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.dismiss();
+                        Uri uri = taskSnapshot.getDownloadUrl();
+                        final String url = uri.getPath();
+                        storage.getReferenceFromUrl(delValue).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                switch (requestCode) {
+                                    case NOIDUNG:
+                                        noidung = url;
+                                        break;
+                                    case DAPANA:
+                                        dapana = url;
+                                        break;
+                                    case DAPANB:
+                                        dapanb = url;
+                                        break;
+                                    case DAPANC:
+                                        dapanc = url;
+                                        break;
+                                    case DAPAND:
+                                        dapand = url;
+                                        break;
+                                }
+                                FirebaseDatabase.getInstance().getReferenceFromUrl("https://tracnghiem-data001.firebaseio.com/")
+                                        .child("DanhSachGiaoVien").child(sessionManager.getUsername())
+                                        .child("DanhSachDe").child(de).child(cauhoi)
+                                        .child(requestCode + "")
+                                        .setValue("https://firebasestorage.googleapis.com" + url + "?alt=media");
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(ChinhSuaCauHoiActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                                .getTotalByteCount());
+                        progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                    }
+                });
+>>>>>>> 48fff061116cfa44973b356cb565bd6ee789f05a
     }
 }
